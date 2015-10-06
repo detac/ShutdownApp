@@ -1,8 +1,6 @@
 package com.sa.gui;
 
 import com.sa.app.ShutdownThread;
-import com.sa.app.ShutdownTimer;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +21,7 @@ public class MainWindow {
     private JLabel info;
     private ShutdownThread thread;
 
-    public MainWindow() {
+    public MainWindow() throws Exception {
         init();
         add();
         frameSetup();
@@ -35,7 +33,7 @@ public class MainWindow {
         frame.setVisible(true);
     }
 
-    public void init() {
+    public void init() throws Exception {
         frame = new JFrame();
         panel = new JPanel();
         hh = new JTextField();
@@ -45,7 +43,6 @@ public class MainWindow {
         ss = new JTextField();
         button = new JButton();
         info = new JLabel();
-        thread = new ShutdownThread(info);
     }
 
     public void add() {
@@ -85,16 +82,20 @@ public class MainWindow {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String status = button.getText();
-                if (status.equals(SHUTDOWN)) {
-                    thread.shutdown(collectData());
-                    button.setText(CANCLE);
-                    setEditableTextFieldSetup(false);
-                } else {
-                    info.setText("");
-                    button.setText(SHUTDOWN);
-                    setEditableTextFieldSetup(true);
-                    thread.cancle();
+                try {
+                    String status = button.getText();
+                    if (status.equals(SHUTDOWN)) {
+                        thread = new ShutdownThread(info);
+                        thread.shutdown(collectData());
+                        button.setText(CANCLE);
+                        setEditableTextFieldSetup(false);
+                    } else {
+                        info.setText("");
+                        button.setText(SHUTDOWN);
+                        setEditableTextFieldSetup(true);
+                        thread.cancle();
+                    }
+                } catch (Exception ex) {
                 }
             }
         });

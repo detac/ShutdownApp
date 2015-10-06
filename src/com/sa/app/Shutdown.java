@@ -2,15 +2,25 @@ package com.sa.app;
 
 public class Shutdown {
 
-    public Shutdown(){
+    private OS os;
+    private String shutdownCommand;
+
+    public Shutdown() throws Exception {
+        os = OS.getEnumOS();
+        shutdownCommand = os.getShutdownCommand();
     }
 
-    public void execute(){
-        try{
-            OS os = OS.getEnumOS();
-            String shutdownCommand = os.getShutdownCommand();
-            Runtime.getRuntime().exec(shutdownCommand);
-            System.exit(0);
-        }catch(Exception ex){}
+    public void execute() throws Exception {
+        Runtime.getRuntime().exec(shutdownCommand);
+        System.exit(0);
+
+    }
+
+    public OS getOs() {
+        return os;
+    }
+
+    public String getShutdownCommand() {
+        return shutdownCommand;
     }
 }
