@@ -11,13 +11,14 @@ public class MainWindow {
     private static String CANCLE = "Cancle";
 
     private JFrame frame;
-    private JPanel panel;
+    private JPanel mainPanel;
     private JTextField hh;
     private JLabel l_hh;
     private JTextField mm;
     private JLabel l_mm;
     private JTextField ss;
     private JButton button;
+    private JPanel infoPanel;
     private JLabel info;
     private ShutdownThread thread;
 
@@ -35,25 +36,31 @@ public class MainWindow {
 
     public void init() throws Exception {
         frame = new JFrame();
-        panel = new JPanel();
+        mainPanel = new JPanel();
         hh = new JTextField();
         l_hh = new JLabel();
         mm = new JTextField();
         l_mm = new JLabel();
         ss = new JTextField();
         button = new JButton();
+        infoPanel = new JPanel();
         info = new JLabel();
     }
 
     public void add() {
-        panel.add(hh);
-        panel.add(l_hh);
-        panel.add(mm);
-        panel.add(l_mm);
-        panel.add(ss);
-        panel.add(button);
-        panel.add(info);
-        frame.add(panel);
+        frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+
+        mainPanel.add(hh);
+        mainPanel.add(l_hh);
+        mainPanel.add(mm);
+        mainPanel.add(l_mm);
+        mainPanel.add(ss);
+        mainPanel.add(button);
+
+        infoPanel.add(info);
+
+        frame.add(mainPanel);
+        frame.add(infoPanel);
     }
 
     private void textFieldSetup() {
@@ -103,7 +110,7 @@ public class MainWindow {
 
     private void frameSetup() {
         frame.setTitle("Shutdown App");
-        frame.setBounds(100, 50, 600, 400);
+        frame.setBounds(100, 50, 350, 90);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
