@@ -1,0 +1,3 @@
+# ShutdownApp
+
+IDE: IntelliJ IDEA
