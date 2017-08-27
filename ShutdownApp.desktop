@@ -1,0 +1,6 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=ShutdownApp
+Icon=/home/visual/dev/projects/intellij/ShutdownApp/icon.png
+Exec=/home/visual/dev/projects/intellij/ShutdownApp/./ShutdownApp.sh

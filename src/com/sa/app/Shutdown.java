@@ -13,7 +13,6 @@ public class Shutdown {
     public void execute() throws Exception {
         Runtime.getRuntime().exec(shutdownCommand);
         System.exit(0);
-
     }
 
     public OS getOs() {
